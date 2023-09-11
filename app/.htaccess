@@ -1,0 +1,12 @@
+RewriteEngine On
+
+# Si el archivo/directorio con el nombre de la solicitud existe, no hagas nada
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+# Redirige todas las demás solicitudes a index.php
+
+RewriteRule ^ index.php [L]
+RewriteRule ^test$ /index.php [L]

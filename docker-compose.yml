@@ -1,0 +1,25 @@
+version: "3"
+services:
+    web:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        ports:
+            - "80:80"
+        volumes:
+            - ./app:/var/www/html
+        depends_on:
+            - db
+    db:
+        image: mysql:8.0
+        environment:
+            MYSQL_ROOT_PASSWORD: root123
+            MYSQL_DATABASE: gestion-franca
+            MYSQL_USER: admin
+            MYSQL_PASSWORD: admin123
+        ports:
+            - "3306:3306"
+    adminer:
+        image: adminer
+        ports:
+            - "8080:8080"
