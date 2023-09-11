@@ -94,3 +94,7 @@ Si no tienes Docker en tu máquina y prefieres desplegar el proyecto directament
 Si todo se ha configurado correctamente, deberías poder ver y utilizar la aplicación desde tu navegador.
 
 Al finalizar, puedes detener los servicios con el comando: `docker-compose down`.
+
+## Database
+
+Se adjunta archivo .sql para replicar base de datos por comandos SQL.

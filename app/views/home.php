@@ -20,7 +20,7 @@
                             <th>Nombre</th>
                             <th>Sueldo Base</th>
                             <th>Sucursal</th>
-                            <th>Elementos</th>
+                            <th>Elementos: cantidad</th>
                             <th>Acciones</th>
                         </tr>
                     </thead>
