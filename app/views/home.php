@@ -69,6 +69,17 @@
                 $('#createTechnicianModal').modal('show');
             });
 
+            document.querySelectorAll('a[title="Eliminar"]').forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+                    // Obtener el ID del técnico desde el atributo data-technician-id
+                    const technicianId = this.getAttribute('data-technician-id');
+                    document.getElementById('technicianIdToDelete').innerText = technicianId; // Muestra el ID en el modal
+                    document.getElementById('hiddenTechnicianId').value = technicianId; // Inserta el ID en el campo oculto
+                    $('#deleteTechnicianModal').modal('show'); // Muestra el modal
+                });
+            });
+
             document.querySelectorAll('a[title="Editar"]').forEach(function(element) {
                 element.addEventListener('click', function(event) {
                     event.preventDefault();
