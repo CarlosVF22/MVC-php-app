@@ -65,6 +65,7 @@ Si no tienes Docker en tu máquina y prefieres desplegar el proyecto directament
 1. **Clonar el Repositorio:**
 
     - Si aún no has clonado el repositorio, hazlo y navega hasta el directorio raíz del proyecto en tu terminal.
+      https://github.com/CarlosVF22/gestion-franca-prueba-tecnica
 
 2. **Configurar el Servidor Apache:**
 
@@ -93,9 +94,3 @@ Si no tienes Docker en tu máquina y prefieres desplegar el proyecto directament
 Si todo se ha configurado correctamente, deberías poder ver y utilizar la aplicación desde tu navegador.
 
 Al finalizar, puedes detener los servicios con el comando: `docker-compose down`.
-
-## versiones
-
--   mysql:8.0
--   PHP:8.1
--   composer:2.6
