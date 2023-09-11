@@ -78,6 +78,32 @@ class TechnicianModel {
         $stmt->close();
         return true;
     }
+
+    public function deleteTechnician($technician_code) {
+        global $conn;
+    
+        // Primero, eliminamos las entradas relacionadas en la tabla Technician_Element
+        $stmt = $conn->prepare("DELETE FROM Technician_Element WHERE technician_code = ?");
+        $stmt->bind_param("i", $technician_code);
+    
+        if (!$stmt->execute()) {
+            return false;
+        }
+    
+        $stmt->close();
+    
+        // Luego, eliminamos el técnico de la tabla Technician
+        $stmt = $conn->prepare("DELETE FROM Technician WHERE code = ?");
+        $stmt->bind_param("i", $technician_code);
+    
+        if (!$stmt->execute()) {
+            return false;
+        }
+    
+        $stmt->close();
+        
+        return true;
+    }
 }
 
 

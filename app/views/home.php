@@ -21,6 +21,7 @@
                     <th>Sueldo Base</th>
                     <th>Sucursal</th>
                     <th>Elementos</th>
+                    <th>Acciones</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,6 +38,10 @@
                             }
                             ?>
                         </td>
+                        <td>
+                            <a href="#" title="Editar"><i class="fas fa-edit"></i></a>
+                            <a href="#" title="Eliminar" data-technician-id="<?php echo $technician['code']; ?>" style="margin-left: 10px;"><i class="fas fa-trash-alt"></i></a>
+                        </td>
                     </tr>
                 <?php endforeach; ?>
                 </tbody>
@@ -44,8 +49,9 @@
         <?php endif; ?>
         </main>
 
-        <!-- Incluyendo el modal -->
+        <!-- Incluyendo modales -->
         <?php include '/var/www/html/views/technician/_modalCreateTechnician.php'; ?>
+        <?php include '/var/www/html/views/technician/_modalDeleteTechnician.php'; ?>
 
         <footer class="mt-5">
             <!-- Información de contacto o enlaces adicionales -->
@@ -59,5 +65,22 @@
                 $('#createTechnicianModal').modal('show');
             });
         </script>
+        <script>
+            document.querySelectorAll('a[title="Eliminar"]').forEach(function(element) {
+                element.addEventListener('click', function(event) {
+                    event.preventDefault();
+
+                    // Obtener el ID del técnico desde el atributo data-technician-id
+                    const technicianId = this.getAttribute('data-technician-id');
+
+                    document.getElementById('technicianIdToDelete').innerText = technicianId; // Muestra el ID en el modal
+                    document.getElementById('hiddenTechnicianId').value = technicianId; // Inserta el ID en el campo oculto
+
+                    $('#deleteTechnicianModal').modal('show'); // Muestra el modal
+                });
+            });
+
+        </script>
+
     </body>
 </html>

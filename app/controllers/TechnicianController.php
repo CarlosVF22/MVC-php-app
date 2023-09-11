@@ -36,4 +36,23 @@ class TechnicianController {
             echo "Faltan datos en el formulario";
         }
     }
+
+    public function delete() {
+        $technician_id = $_POST['technician_id'] ?? null;
+    
+        if ($technician_id) {
+            $technicianModel = new TechnicianModel();
+            if ($technicianModel->deleteTechnician($technician_id)) {
+                // Si se elimina con éxito el técnico, redirigir a la ruta raíz
+                header('Location: /');
+                exit;
+            } else {
+                // Manejar el error si no se puede eliminar el técnico
+                echo "Error al eliminar técnico.";
+            }
+        } else {
+            // Maneja el error de datos faltantes
+            echo "Faltan datos en el formulario";
+        }
+    }
 }
