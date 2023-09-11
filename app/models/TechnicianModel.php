@@ -104,6 +104,39 @@ class TechnicianModel {
         
         return true;
     }
+
+    public function updateTechnician($technician_id, $name, $base_salary, $branch_code, $elements, $quantities) {
+        global $conn;
+        
+        // Actualizar la información básica del técnico
+        $stmt = $conn->prepare("UPDATE Technician SET name = ?, base_salary = ?, branch_code = ? WHERE code = ?");
+        $stmt->bind_param("sisi", $name, $base_salary, $branch_code, $technician_id);
+        if (!$stmt->execute()) {
+            return false;
+        }
+        $stmt->close();
+    
+        // Eliminar los elementos actuales del técnico
+        $stmt = $conn->prepare("DELETE FROM Technician_Element WHERE technician_code = ?");
+        $stmt->bind_param("i", $technician_id);
+        if (!$stmt->execute()) {
+            return false;
+        }
+        $stmt->close();
+    
+        // Insertar los nuevos elementos
+        $stmt = $conn->prepare("INSERT INTO Technician_Element (technician_code, element_code, quantity) VALUES (?, ?, ?)");
+        foreach ($elements as $index => $element_code) {
+            $quantity = $quantities[$index];
+            $stmt->bind_param("iii", $technician_id, $element_code, $quantity);
+            if (!$stmt->execute()) {
+                return false;
+            }
+        }
+        $stmt->close();
+    
+        return true;
+    }
 }
 
 

@@ -55,4 +55,34 @@ class TechnicianController {
             echo "Faltan datos en el formulario";
         }
     }
+
+    public function update() {
+        $technician_id = $_POST['technician_id'] ?? null;
+        $name = $_POST['name'] ?? null;
+        $base_salary = $_POST['base_salary'] ?? null;
+        $branch_code = $_POST['branch_code'] ?? null;
+        $elements = $_POST['elements'] ?? [];
+        
+        // Asumiendo que la cantidad de elementos sigue el mismo patrón que la creación
+        $quantities = [];
+        foreach ($elements as $element_code) {
+            if (isset($_POST['quantity_' . $element_code]) && !empty($_POST['quantity_' . $element_code])) {
+                $quantities[] = $_POST['quantity_' . $element_code];
+            } else {
+                $quantities[] = 1;  // valor por defecto 1
+            }
+        }
+    
+        if (isset($technician_id, $name, $base_salary, $branch_code, $elements) && !empty($quantities)) {
+            $technicianModel = new TechnicianModel();
+            if ($technicianModel->updateTechnician($technician_id, $name, $base_salary, $branch_code, $elements, $quantities)) {
+                header('Location: /');
+                exit;
+            } else {
+                echo "Error al actualizar técnico.";
+            }
+        } else {
+            echo "Faltan datos en el formulario";
+        }
+    }
 }

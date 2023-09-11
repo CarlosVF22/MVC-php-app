@@ -11,7 +11,11 @@ if ($position !== false) {
 $routes = [
     '/' => 'HomeController@index',
     '/crear-tecnico' => 'TechnicianController@save',
-    '/eliminar-tecnico' => 'TechnicianController@delete'
+    '/eliminar-tecnico' => 'TechnicianController@delete',
+    '/actualizar-tecnico' => 'TechnicianController@update',
+    '/api/lista-sucursales' => 'ApiController@branchList',
+    '/api/lista-elementos' => 'ApiController@elementList'
+    
 ];
 
 if (isset($routes[$requestUri])) {
