@@ -2,9 +2,9 @@
 // Configuración de la conexión a la base de datos
 
 $databaseConfig = [
-    'host' => 'db',       
+    'host' => 'laraveldb.c5b7jfvplena.us-east-1.rds.amazonaws.com',       
     'username' => 'admin',  
-    'password' => 'admin123', 
+    'password' => 'cihijMB8T0QDQ6ZpF1CX', 
     'database' => 'gestion-franca', 
 ];
 
